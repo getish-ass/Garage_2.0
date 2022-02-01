@@ -26,6 +26,8 @@ namespace Garage_2._0.Controllers
             return View(await _context.Vehicle.ToListAsync());
         }
 
+
+
         // GET: Vehicles/Details/5
         public async Task<IActionResult> Details(int? id)
         {
@@ -43,6 +45,11 @@ namespace Garage_2._0.Controllers
 
             return View(vehicle);
         }
+
+
+
+
+
 
         // GET: Vehicles/Create
         public IActionResult Create()
@@ -66,6 +73,8 @@ namespace Garage_2._0.Controllers
             return View(vehicle);
         }
 
+
+
         // GET: Vehicles/Edit/5
         public async Task<IActionResult> Edit(int? id)
         {
@@ -81,6 +90,8 @@ namespace Garage_2._0.Controllers
             }
             return View(vehicle);
         }
+
+
 
         // POST: Vehicles/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
@@ -117,6 +128,9 @@ namespace Garage_2._0.Controllers
             return View(vehicle);
         }
 
+
+
+
         // GET: Vehicles/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -134,6 +148,9 @@ namespace Garage_2._0.Controllers
 
             return View(vehicle);
         }
+
+
+
 
         // POST: Vehicles/Delete/5
         [HttpPost, ActionName("Delete")]

@@ -4,7 +4,23 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<h1>Details</h1>
+
+
+<form asp-action = "Search">
+  <div class="input-group mb-3">
+       <input type="text" class="form-control" name="regNo" placeholder="Search on title ..." />
+    <div class="input-group-append">
+        <select name="vehicleType" class="form-control" asp-items="@Html.GetEnumSelectList<VehicleType>()">
+            <option selected="selected" value="">Please select</option>
+        </select>
+    </div>
+    <div class="input-group-append"> 
+      <button type="submit" class="btn btn-primary"><i class="fa fa-search">&emsp;Search</i> </button>
+    </div>
+  </div>
+   
+</form>
 
 <p>
     <a asp-action="Create">Create New</a>

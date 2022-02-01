@@ -25,6 +25,18 @@ namespace Garage_2._0.Controllers
         {
             return View(await _context.Vehicle.ToListAsync());
         }
+        public async Task<IActionResult> Search(string regNo, int vehicleType)
+        {
+            var model = string.IsNullOrWhiteSpace(regNo) ?
+                               _context.Vehicle :
+                               _context.Vehicle.Where(m => m.RegNo.StartsWith(regNo));
+
+            model = vehicleType == 0 ?
+                    model :
+                    model.Where(m => (int)m.vehicleType == vehicleType);
+
+            return View(nameof(Index), await model.ToListAsync());
+        }
 
         // GET: Vehicles/Details/5
         public async Task<IActionResult> Details(int? id)

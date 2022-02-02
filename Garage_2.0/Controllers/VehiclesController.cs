@@ -21,7 +21,7 @@ namespace Garage_2._0.Controllers
             _context = context;
         }
 
-        // GET: Overview Vehicles
+        // GET: Overview Vehicles ; Pekka asks: Is this used 2022-02-02 ?
         public async Task<IActionResult> Overview()
         {
             var viewModel = _context.Vehicle.Select(e => new VehicleIndexViewModel

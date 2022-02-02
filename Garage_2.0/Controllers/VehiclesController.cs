@@ -49,8 +49,6 @@ namespace Garage_2._0.Controllers
 
 
 
-
-
         // GET: Vehicles/Create
         public IActionResult Create()
         {
@@ -161,6 +159,25 @@ namespace Garage_2._0.Controllers
             _context.Vehicle.Remove(vehicle);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+
+        // GET: Vehicles/Delete/5
+        public async Task<IActionResult> CheckOut(int? id)
+        {
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var vehicle = await _context.Vehicle
+                .FirstOrDefaultAsync(m => m.Id == id);
+            if (vehicle == null)
+            {
+                return NotFound();
+            }
+
+            return View(vehicle);
         }
 
         private bool VehicleExists(int id)

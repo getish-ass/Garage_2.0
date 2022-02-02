@@ -1,4 +1,5 @@
-﻿using System.ComponentModel;
+﻿using Garage_2._0.Models.Entities;
+using System.ComponentModel;
 using System.ComponentModel.DataAnnotations;
 
 

@@ -1,4 +1,4 @@
-﻿namespace Garage_2._0.Models
+﻿namespace Garage_2._0.Models.Entities
 {
     public enum VehicleType
     {

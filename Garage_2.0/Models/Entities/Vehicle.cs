@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using Garage_2._0.Models.Entities;
+using System.ComponentModel.DataAnnotations;
 
 namespace Garage_2._0.Models
 {

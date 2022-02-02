@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage_2._0.Data;
 using Garage_2._0.Models;
+using Garage_2._0.Models.ViewModels;
 
 namespace Garage_2._0.Controllers
 {
@@ -18,6 +19,21 @@ namespace Garage_2._0.Controllers
         public VehiclesController(Garage_2_0Context context)
         {
             _context = context;
+        }
+
+        // GET: Overview Vehicles
+        public async Task<IActionResult> Overview()
+        {
+            var viewModel = _context.Vehicle.Select(e => new VehicleIndexViewModel
+            {
+                Id = e.Id,
+                Parked = e.Parked,
+                RegNo = e.RegNo,
+                ArrivalTime = e.ArrivalTime,
+                VehicleType = e.VehicleType
+            });
+
+            return View(await viewModel.ToListAsync());
         }
 
         // GET: Vehicles
@@ -33,7 +49,7 @@ namespace Garage_2._0.Controllers
 
             model = vehicleType == 0 ?
                     model :
-                    model.Where(m => (int)m.vehicleType == vehicleType);
+                    model.Where(m => (int)m.VehicleType == vehicleType);
 
             return View(nameof(Index), await model.ToListAsync());
         }

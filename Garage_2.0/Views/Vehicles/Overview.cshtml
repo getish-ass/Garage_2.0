@@ -1,7 +1,10 @@
-﻿@model IEnumerable<Vehicle>
+﻿@model IEnumerable<VehicleIndexViewModel>
+@{
+    ViewData["Title"] = "Översikt fordon";
+}
 
 <p>
-    <a asp-action="Create">Parkera fordon</a>
+    <a asp-action="Create">Översikt över parkerade fordon</a>
 </p>
 <table class="table">
     <thead>
@@ -16,21 +19,12 @@
                 @Html.DisplayNameFor(model => model.ArrivalTime)
             </th>
             <th>
-                @Html.DisplayNameFor(model => model.Brand)
+                @Html.DisplayNameFor(model => model.VehicleType)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Model)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.NoOfWheels)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Color)
-            </th>
-            <th></th>
         </tr>
     </thead>
     <tbody>
+
 @foreach (var item in Model) {
         <tr>
             <td>
@@ -43,16 +37,7 @@
                 @Html.DisplayFor(modelItem => item.ArrivalTime)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.Brand)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Model)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.NoOfWheels)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Color)
+                @Html.DisplayNameFor(modelItem => item.VehicleType)
             </td>
             <td>
                 <a asp-action="Edit" asp-route-id="@item.Id">Ändra</a> |

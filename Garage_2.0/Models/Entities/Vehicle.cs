@@ -6,6 +6,7 @@ namespace Garage_2._0.Models
     {
         public int Id { get; set; }
         public bool Parked { get; set; }
+
         [Required]
         [StringLength(6)]
         public string RegNo { get; set; }

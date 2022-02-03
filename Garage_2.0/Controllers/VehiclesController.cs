@@ -8,7 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage_2._0.Data;
 using Garage_2._0.Models;
-using Garage_2._0.Models.ViewModels;
+using Garage_2._0.Models.ViewModel;
+
 
 namespace Garage_2._0.Controllers
 {
@@ -22,37 +23,57 @@ namespace Garage_2._0.Controllers
         }
 
         // GET: Overview Vehicles
-        public async Task<IActionResult> Overview()
-        {
-            var viewModel = _context.Vehicle.Select(e => new VehicleIndexViewModel
-            {
-                Id = e.Id,
-                Parked = e.Parked,
-                RegNo = e.RegNo,
-                ArrivalTime = e.ArrivalTime,
-                VehicleType = e.VehicleType
-            });
 
-            return View(await viewModel.ToListAsync());
-        }
 
         // GET: Vehicles
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Vehicle.ToListAsync());
+            var model = new DataModel
+            {
+                Vehicles = await _context.Vehicle.ToListAsync(),
+                VehicleTypes = await GetVehiclesTypeAsync()
+            };
+            return View(model);
         }
-        public async Task<IActionResult> Search(string regNo, int vehicleType)
+
+        private async Task<IEnumerable<SelectListItem>> GetVehiclesTypeAsync()
         {
-            var model = string.IsNullOrWhiteSpace(regNo) ?
-                               _context.Vehicle :
-                               _context.Vehicle.Where(m => m.RegNo.StartsWith(regNo));
-
-            model = vehicleType == 0 ?
-                    model :
-                    model.Where(m => (int)m.VehicleType == vehicleType);
-
-            return View(nameof(Index), await model.ToListAsync());
+            return await _context.Vehicle
+                                 .Select(m => m.VehicleType)
+                                 .Distinct()
+                                 .Select(g => new SelectListItem
+                                 {
+                                     Text = g.ToString(),
+                                     Value = g.ToString()
+                                 })
+                                 .ToListAsync();
         }
+
+        public async Task<IActionResult> Search(DataModel dataModel)
+        {
+            var model = string.IsNullOrWhiteSpace(dataModel.RegNo) ?
+                              _context.Vehicle :
+                              _context.Vehicle.Where(m => m.RegNo.StartsWith(dataModel.RegNo));
+
+
+            model = dataModel.VehicleType == null ?
+                          model :
+                          model.Where(m => m.VehicleType == dataModel.VehicleType);
+
+            var searchResult = await model.ToListAsync();
+
+            var viewModel = new DataModel
+            {
+                Vehicles = searchResult
+            };
+
+            return View(nameof(Index), viewModel);
+
+        }
+
+
+      
+
 
         // GET: Vehicles/Details/5
         public async Task<IActionResult> Details(int? id)

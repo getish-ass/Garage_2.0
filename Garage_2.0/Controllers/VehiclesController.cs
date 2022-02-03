@@ -25,6 +25,12 @@ namespace Garage_2._0.Controllers
         {
             return View(await _context.Vehicle.ToListAsync());
         }
+
+        public async Task<IActionResult> Index0()
+        {
+            return View(await _context.Vehicle.ToListAsync());
+        }
+
         public async Task<IActionResult> Search(string regNo, int vehicleType)
         {
             var model = string.IsNullOrWhiteSpace(regNo) ?
@@ -37,6 +43,22 @@ namespace Garage_2._0.Controllers
 
             return View(nameof(Index), await model.ToListAsync());
         }
+
+        public async Task<IActionResult> Search0(string regNo, int vehicleType)
+        {
+            var model = string.IsNullOrWhiteSpace(regNo) ?
+                               _context.Vehicle :
+                               _context.Vehicle.Where(m => m.RegNo.StartsWith(regNo));
+
+            model = vehicleType == 0 ?
+                    model :
+                    model.Where(m => (int)m.vehicleType == vehicleType);
+
+            return View(nameof(Index0), await model.ToListAsync());
+        }
+
+
+
 
         // GET: Vehicles/Details/5
         public async Task<IActionResult> Details(int? id)
@@ -58,6 +80,11 @@ namespace Garage_2._0.Controllers
 
         // GET: Vehicles/Create
         public IActionResult Create()
+        {
+            return View();
+        }
+
+        public IActionResult Create0()
         {
             return View();
         }

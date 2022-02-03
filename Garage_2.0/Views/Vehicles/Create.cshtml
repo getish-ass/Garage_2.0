@@ -13,13 +13,14 @@
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Parked" /> @Html.DisplayNameFor(model => model.Parked) 
+                    <input class="form-check-input" checked="true" asp-for="Parked" /> @Html.DisplayNameFor(model => model.Parked)
                 </label>
             </div>
             <div class="form-group">
                 <label asp-for="RegNo" class="control-label"></label>
                 <input asp-for="RegNo" class="form-control" />
                 <span asp-validation-for="RegNo" class="text-danger"></span>
+            </div>
             <div class="form-group">
                 <label asp-for="ArrivalTime" class="control-label"></label>
                 <input asp-for="ArrivalTime" class="form-control" />

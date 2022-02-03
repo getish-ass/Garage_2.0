@@ -22,19 +22,6 @@
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ArrivalTime)
         </dd>
-        <dt class = "col-sm-2">
-            @Html.DisplayNameFor(model => model.vehicleType)
-        </dt>
-        <dd class = "col-sm-10">
-            @Html.DisplayFor(model => model.vehicleType)
-        </dd>
 
     </dl>
-</div>
-<div>
-    <form asp-action="Delete">
-        <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Gå tillbaka till parkeringshuset" class="btn btn-info" />
-        @*<a asp-action="Index">Gå tillbaka till parkeringshuset</a>*@
-    </form>
 </div>

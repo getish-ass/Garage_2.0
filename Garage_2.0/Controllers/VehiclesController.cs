@@ -196,7 +196,6 @@ namespace Garage_2._0.Controllers
                 Id = vehicle.Id,
                 ArrivalTime = vehicle.ArrivalTime,
                 RegNo = vehicle.RegNo,
-                vehicleType = vehicle.vehicleType
                 // räkna ut parkerad tid
                 // räkna ut kostnad
 

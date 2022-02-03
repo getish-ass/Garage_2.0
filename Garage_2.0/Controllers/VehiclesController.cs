@@ -22,7 +22,17 @@ namespace Garage_2._0.Controllers
             _context = context;
         }
 
-        // GET: Overview Vehicles
+        // GET: Overview Vehicles ; Pekka asks: Is this used 2022-02-02 ?
+        public async Task<IActionResult> Overview()
+        {
+            var viewModel = _context.Vehicle.Select(e => new VehicleIndexViewModel
+            {
+                Id = e.Id,
+                Parked = e.Parked,
+                RegNo = e.RegNo,
+                ArrivalTime = e.ArrivalTime,
+                VehicleType = e.VehicleType
+            });
 
 
         // GET: Vehicles
@@ -193,6 +203,12 @@ namespace Garage_2._0.Controllers
             _context.Vehicle.Remove(vehicle);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
+        }
+
+        // Pekka: not used 2022-02-02
+        public bool RegNoExists(string regNo)
+        {
+            return _context.Vehicle.Any(v => v.RegNo == regNo);
         }
 
         private bool VehicleExists(int id)

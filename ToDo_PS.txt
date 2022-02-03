@@ -1,0 +1,23 @@
+FÖRSLAG från Pekka:
+• Huvudrubriken: “Lägg till fordon” borde nog referera till ordet parkera. T.ex: 1. Parkera; 2. Parkera fordon; 3. Parkera nytt fordon
+
+• Parkerad-check-box ska helst vara förbockad från början (och låst), dvs true (själva vyns syfte är ju att parkera ett fordon)
+  Har fixat detta i min version i filen Create.cshtml på raden:
+  <input class="form-check-input" checked="true" asp-for="Parked" /> @Html.DisplayNameFor(model => model.Parked)
+  Lagt till: checked="true"
+
+• Bredden på sökraden är lite väl stor. Har reducerat den till 5/12 delar i min.
+
+• Ankomsttiden ska helst sparas i databasen då användaren klickar på 'Lägg till'-knappen;
+ (Om så är fallet, behövs inte ankomstiden att finnas i 'Lägg till fordon'-vyn överhuvudtaget)
+
+
+TO-DO:
+• Fordonstyp-egenskapen saknas på fyra html-sidor:
+  1 • Huvudsidan
+  2 • Ändra
+  3 • Detaljer
+  4 • Parkera fordon ( här ska den vara en dropdownlist med samtliga fordonstyper)
+
+• "Huvudvyns" 'Välj fordonstyp'-sök ska bara innehålla fordonstyper från redan parkerade fordon 
+  (på samma sätt som Dimitris Movies-projekt)

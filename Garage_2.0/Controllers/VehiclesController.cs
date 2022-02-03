@@ -171,8 +171,8 @@ namespace Garage_2._0.Controllers
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicle
-                .FirstOrDefaultAsync(m => m.Id == id);
+            var vehicle = await _context.Vehicle.FirstOrDefaultAsync(m => m.Id == id);
+
             if (vehicle == null)
             {
                 return NotFound();
@@ -186,7 +186,7 @@ namespace Garage_2._0.Controllers
             return _context.Vehicle.Any(e => e.Id == id);
         }
 
-        public async Task<IActionResult> Receipt(int? id)
+        public async Task<IActionResult> Receipt(int? id, [Bind("CheckOutTime")] ReceiptViewModel receipt)
         {
             var vehicle = await _context.Vehicle
                 .FirstOrDefaultAsync(m => m.Id == id);

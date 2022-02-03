@@ -16,8 +16,8 @@ namespace Garage_2._0.Models
 
         [Display(Name = "Ankomsttid")]
         public DateTime ArrivalTime { get; set; }
-        [StringLength(25)]
 
+        [StringLength(25)]
         [Display(Name = "Märke")]
         public string? Brand { get; set; }
 
@@ -32,6 +32,8 @@ namespace Garage_2._0.Models
         [StringLength(20)]
         [Display(Name = "Färg")]
         public string? Color { get; set; }
+
+        [Display(Name = "Fordonstyp")]
         public VehicleType vehicleType { get; set; }
     }
 }

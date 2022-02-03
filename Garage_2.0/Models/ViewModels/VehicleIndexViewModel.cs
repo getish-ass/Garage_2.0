@@ -19,7 +19,10 @@ namespace Garage_2._0.Models.ViewModels
 
         [Display(Name = "Ankomsttid")]
         public DateTime ArrivalTime { get; set; }
-  
+
+        [Display(Name = "Parkerad tid")]
+        public DateTime ParkedTime { get; set; }
+
         [Display(Name = "Fordonstyp")]
         public VehicleType VehicleType { get; set; }
     }

@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Garage_2._0.Data;
 using Garage_2._0.Models;
 using Garage_2._0.Models.ViewModel;
-
+using Garage_2._0.Models.ViewModels;
 
 namespace Garage_2._0.Controllers
 {
@@ -36,7 +36,10 @@ namespace Garage_2._0.Controllers
                 ArrivalTime = e.ArrivalTime,
                 //ParkedTime = e.ArrivalTime - DateTime.Now,
                 VehicleType = e.VehicleType
-            }); 
+            });
+
+            return View(await viewModel.ToListAsync());
+        }
 
 
         // GET: Vehicles
@@ -162,6 +165,7 @@ namespace Garage_2._0.Controllers
                 try
                 {
                     _context.Update(vehicle);
+                    _context.Entry(vehicle).Property(v => v.ArrivalTime).IsModified = false;
                     await _context.SaveChangesAsync();
                 }
                 catch (DbUpdateConcurrencyException)

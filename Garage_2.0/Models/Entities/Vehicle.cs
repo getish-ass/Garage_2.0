@@ -12,7 +12,7 @@ namespace Garage_2._0.Models
 
         [Required]
         [StringLength(6)]
-        [Display(Name = "Reg-nr")]
+        [Display(Name = "Reg nr")] //Titta på remote
         public string? RegNo { get; set; }
         
         [Display(Name = "Ankomsttid")]

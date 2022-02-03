@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc.Rendering;
+﻿using Garage_2._0.Models.Entities;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace Garage_2._0.Models.ViewModel
 {

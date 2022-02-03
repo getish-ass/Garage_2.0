@@ -200,6 +200,7 @@ namespace Garage_2._0.Controllers
             var vehicle = await _context.Vehicle
                 .FirstOrDefaultAsync(m => m.Id == id);
 
+
             var viewModel = new ReceiptViewModel
             {
                 Id = vehicle.Id,

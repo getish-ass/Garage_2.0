@@ -4,6 +4,7 @@ using Garage_2._0.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,10 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Garage_2._0.Migrations
 {
     [DbContext(typeof(Garage_2_0Context))]
-    partial class Garage_2_0ContextModelSnapshot : ModelSnapshot
+    [Migration("20220203102745_ChangeVehicleTypeToSwedish")]
+    partial class ChangeVehicleTypeToSwedish
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -67,62 +69,62 @@ namespace Garage_2._0.Migrations
                         new
                         {
                             Id = 1,
-                            ArrivalTime = new DateTime(2022, 2, 3, 11, 40, 45, 424, DateTimeKind.Local).AddTicks(1596),
+                            ArrivalTime = new DateTime(2022, 2, 3, 11, 27, 45, 103, DateTimeKind.Local).AddTicks(8196),
                             Brand = "Volvo",
                             Color = "Svart",
                             Model = "V60",
                             NoOfWheels = 4,
                             Parked = true,
                             RegNo = "FHX010",
-                            VehicleType = 1
+                            VehicleType = 0
                         },
                         new
                         {
                             Id = 2,
-                            ArrivalTime = new DateTime(2022, 2, 3, 11, 40, 45, 424, DateTimeKind.Local).AddTicks(1636),
+                            ArrivalTime = new DateTime(2022, 2, 3, 11, 27, 45, 103, DateTimeKind.Local).AddTicks(8255),
                             Brand = "Toyota",
                             Color = "Blå",
                             Model = "Celica Supra",
                             NoOfWheels = 4,
                             Parked = true,
                             RegNo = "HHS407",
-                            VehicleType = 1
+                            VehicleType = 0
                         },
                         new
                         {
                             Id = 3,
-                            ArrivalTime = new DateTime(2022, 2, 3, 11, 40, 45, 424, DateTimeKind.Local).AddTicks(1638),
+                            ArrivalTime = new DateTime(2022, 2, 3, 11, 27, 45, 103, DateTimeKind.Local).AddTicks(8260),
                             Brand = "Mercedes-Benz",
                             Color = "Vit",
                             Model = "Arocs",
                             NoOfWheels = 6,
                             Parked = true,
                             RegNo = "XRE565",
-                            VehicleType = 3
+                            VehicleType = 2
                         },
                         new
                         {
                             Id = 4,
-                            ArrivalTime = new DateTime(2022, 2, 3, 11, 40, 45, 424, DateTimeKind.Local).AddTicks(1641),
+                            ArrivalTime = new DateTime(2022, 2, 3, 11, 27, 45, 103, DateTimeKind.Local).AddTicks(8264),
                             Brand = "Scania",
                             Color = "Svart",
                             Model = "",
                             NoOfWheels = 8,
                             Parked = true,
                             RegNo = "MLB803",
-                            VehicleType = 4
+                            VehicleType = 3
                         },
                         new
                         {
                             Id = 5,
-                            ArrivalTime = new DateTime(2022, 2, 3, 11, 40, 45, 424, DateTimeKind.Local).AddTicks(1643),
+                            ArrivalTime = new DateTime(2022, 2, 3, 11, 27, 45, 103, DateTimeKind.Local).AddTicks(8267),
                             Brand = "BMV",
                             Color = "Svart",
                             Model = "",
                             NoOfWheels = 6,
                             Parked = true,
                             RegNo = "MXW413",
-                            VehicleType = 2
+                            VehicleType = 1
                         });
                 });
 #pragma warning restore 612, 618

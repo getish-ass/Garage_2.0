@@ -2,11 +2,11 @@
 {
     public enum VehicleType
     {
-        NotAvailable,
-        Car,
+        NotAvalaible,
+        Bil,
         Van,
-        Lorry,
-        Bus,
-        MotorCycle
+        Lastbil,
+        Buss,
+        Motorcykel
     }
 }

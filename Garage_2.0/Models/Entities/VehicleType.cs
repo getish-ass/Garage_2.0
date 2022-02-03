@@ -2,7 +2,6 @@
 {
     public enum VehicleType
     {
-        NotAvalaible,
         Bil,
         Van,
         Lastbil,

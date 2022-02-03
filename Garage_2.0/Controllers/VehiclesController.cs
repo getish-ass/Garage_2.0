@@ -33,7 +33,7 @@ namespace Garage_2._0.Controllers
                 Parked = e.Parked,
                 RegNo = e.RegNo,
                 ArrivalTime = e.ArrivalTime,
-                ParkedTime = e.ArrivalTime - DateTime.Now,
+                //ParkedTime = e.ArrivalTime - DateTime.Now,
                 VehicleType = e.VehicleType
             }); 
 

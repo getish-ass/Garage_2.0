@@ -16,7 +16,7 @@ namespace Garage_2._0.Models
         public string? RegNo { get; set; }
         
         [Display(Name = "Ankomsttid")]
-        public DateTime ArrivalTime { get; set; }
+        public DateTime ArrivalTime { get; }
         
         [StringLength(25)]
         [Display(Name = "Märke")]

@@ -24,7 +24,9 @@ namespace Garage_2._0.Controllers
         // GET: Overview Vehicles
         public async Task<IActionResult> Overview()
         {
+            var vehicle = _context.Vehicle.Select();
             var viewModel = _context.Vehicle.Select(e => new VehicleIndexViewModel
+
             {
                 Id = e.Id,
                 Parked = e.Parked,
@@ -32,6 +34,13 @@ namespace Garage_2._0.Controllers
                 ArrivalTime = e.ArrivalTime,
                 VehicleType = e.VehicleType
             });
+
+            var time = DateTime.Now;
+            var parkedTime = DateTime.Now - viewModel.ArrivalTime;
+
+
+
+
 
             return View(await viewModel.ToListAsync());
         }

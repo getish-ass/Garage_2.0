@@ -164,21 +164,32 @@ namespace Garage_2._0.Controllers
 
 
         // GET: Vehicles/CheckOut/5
-        public async Task<IActionResult> CheckOut(int? id)
+        public async Task<IActionResult> CheckOut(int? id, ReceiptViewModel receipt)
         {
+            var vehicle = await _context.Vehicle.FirstOrDefaultAsync(m => m.Id == id);
+
             if (id == null)
             {
                 return NotFound();
             }
 
-            var vehicle = await _context.Vehicle.FirstOrDefaultAsync(m => m.Id == id);
+            var viewModel = new ReceiptViewModel
+            {
+                Id = vehicle.Id,
+                ArrivalTime = vehicle.ArrivalTime,
+                RegNo = vehicle.RegNo,
+                CheckOutTime = DateTime.Now,
+                ParkedTime = (int)(DateTime.Now - vehicle.ArrivalTime).TotalMinutes
+                
+
+            };
 
             if (vehicle == null)
             {
                 return NotFound();
             }
 
-            return View(vehicle);
+            return View(viewModel);
         }
 
         private bool VehicleExists(int id)
@@ -186,7 +197,7 @@ namespace Garage_2._0.Controllers
             return _context.Vehicle.Any(e => e.Id == id);
         }
 
-        public async Task<IActionResult> Receipt(int? id, [Bind("CheckOutTime")] ReceiptViewModel receipt)
+        public async Task<IActionResult> Receipt(int? id, ReceiptViewModel receipt)
         {
             var vehicle = await _context.Vehicle
                 .FirstOrDefaultAsync(m => m.Id == id);
@@ -196,6 +207,10 @@ namespace Garage_2._0.Controllers
                 Id = vehicle.Id,
                 ArrivalTime = vehicle.ArrivalTime,
                 RegNo = vehicle.RegNo,
+                CheckOutTime = DateTime.Now,
+                ParkedTime = ((int)(DateTime.Now - vehicle.ArrivalTime).TotalMinutes),
+                Cost = (int)(DateTime.Now - vehicle.ArrivalTime).TotalMinutes * 1
+                
                 // räkna ut parkerad tid
                 // räkna ut kostnad
 

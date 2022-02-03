@@ -16,9 +16,9 @@ namespace Garage_2._0.Models
         public DateTime CheckOutTime { get; set; }
 
         [Display(Name = "Parkerad tid")]
-        public TimeSpan ParkedTime { get; set; }
+        public int ParkedTime { get; set; }
 
-        //[Display(Name = "Kostnad")]
-        //public int Cost { get; set; }
+        [Display(Name = "Kostnad")]
+        public int Cost { get; set; }
     }
 }

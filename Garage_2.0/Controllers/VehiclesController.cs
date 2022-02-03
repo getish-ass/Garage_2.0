@@ -207,8 +207,8 @@ namespace Garage_2._0.Controllers
                 RegNo = vehicle.RegNo,
                 CheckOutTime = DateTime.Now,
                 ParkedTime = ((int)(DateTime.Now - vehicle.ArrivalTime).TotalMinutes),
-                Cost = ((int) (DateTime.Now - vehicle.ArrivalTime).TotalMinutes / 60) * 20
-                
+                Cost = ((int)(DateTime.Now - vehicle.ArrivalTime).TotalMinutes / 60) * 20
+
                 // räkna ut parkerad tid
                 // räkna ut kostnad
 

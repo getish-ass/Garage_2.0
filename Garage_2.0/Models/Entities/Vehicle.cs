@@ -34,6 +34,6 @@ namespace Garage_2._0.Models
         public string? Color { get; set; }
 
         [Display(Name = "Fordonstyp")]
-        public VehicleType vehicleType { get; set; }
+        public VehicleType VehicleType { get; set; }
     }
 }

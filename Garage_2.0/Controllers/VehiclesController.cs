@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage_2._0.Data;
 using Garage_2._0.Models;
-using Garage_2._0.Models.ViewModel;
 using Garage_2._0.Models.ViewModels;
 
 namespace Garage_2._0.Controllers
@@ -123,6 +122,7 @@ namespace Garage_2._0.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Vehicle vehicle)
         {
+            vehicle.ArrivalTime = DateTime.Now;
             if (ModelState.IsValid)
             {
                 _context.Add(vehicle);

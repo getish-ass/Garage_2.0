@@ -8,7 +8,6 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage_2._0.Data;
 using Garage_2._0.Models;
-using Garage_2._0.Models.ViewModel;
 using Garage_2._0.Models.ViewModels;
 
 namespace Garage_2._0.Controllers
@@ -67,6 +66,34 @@ namespace Garage_2._0.Controllers
                                  .ToListAsync();
         }
 
+        public async Task<IActionResult> Index0()
+        {
+            return View(await _context.Vehicle.ToListAsync());
+        }
+
+
+
+        public async Task<IActionResult> Index10()
+        {
+            return View(await _context.Vehicle.ToListAsync());
+        }
+
+        public async Task<IActionResult> Index20()
+        {
+            return View(await _context.Vehicle.ToListAsync());
+        }
+
+        public async Task<IActionResult> Index30()
+        {
+            return View(await _context.Vehicle.ToListAsync());
+        }
+
+        public async Task<IActionResult> Index40()
+        {
+            return View(await _context.Vehicle.ToListAsync());
+        }
+
+
         public async Task<IActionResult> Search(DataModel dataModel)
         {
             var model = string.IsNullOrWhiteSpace(dataModel.RegNo) ?
@@ -114,21 +141,51 @@ namespace Garage_2._0.Controllers
             return View();
         }
 
+        public IActionResult Create0()
+        {
+            return View();
+        }
+
         // POST: Vehicles/Create
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(Vehicle vehicle)
+        public async Task<IActionResult> Create([Bind("Id,Parked,VehicleType,RegNo,Brand,Model,NoOfWheels,Color")] Vehicle vehicle)
         {
+            vehicle.ArrivalTime = DateTime.Now;
             if (ModelState.IsValid)
             {
-                _context.Add(vehicle);
-                await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                // var myReg = _context.Vehicle.Where(a => a.RegNo == vehicle.RegNo);
+                var myReg = _context.Vehicle.Where(a => a.RegNo == vehicle.RegNo).FirstOrDefault();
+
+                if (myReg == null)
+                {
+                    _context.Add(vehicle);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index10));
+
+                }
+                if(myReg != null)
+                {
+                    return RedirectToAction(nameof(Index40));
+
+                }
+               
+
+
             }
             return View(vehicle);
         }
+
+
+
+
+
+
+
+
 
         // GET: Vehicles/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -151,7 +208,7 @@ namespace Garage_2._0.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Parked,VehicleType,RegNo,Brand,Model,NoOfWheels,Color")] Vehicle vehicle)
         {
             if (id != vehicle.Id)
             {
@@ -165,6 +222,9 @@ namespace Garage_2._0.Controllers
                     _context.Update(vehicle);
                     _context.Entry(vehicle).Property(v => v.ArrivalTime).IsModified = false;
                     await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index20));
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -177,7 +237,7 @@ namespace Garage_2._0.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
             }
             return View(vehicle);
         }
@@ -197,6 +257,8 @@ namespace Garage_2._0.Controllers
                 return NotFound();
             }
 
+           
+
             return View(vehicle);
         }
 
@@ -208,7 +270,7 @@ namespace Garage_2._0.Controllers
             var vehicle = await _context.Vehicle.FindAsync(id);
             _context.Vehicle.Remove(vehicle);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index30));
         }
 
         // Pekka: not used 2022-02-02

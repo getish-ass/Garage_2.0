@@ -29,6 +29,7 @@ namespace Garage_2._0.Data
                 new Vehicle { Id = 4, Parked = true, RegNo = "MLB803",  ArrivalTime = DateTime.Now, Brand = "Scania", Model = "", NoOfWheels = 8, Color = "Svart", VehicleType = VehicleType.Buss},
                 new Vehicle { Id = 5, Parked = true, RegNo = "MXW413",  ArrivalTime = DateTime.Now, Brand = "BMV", Model = "", NoOfWheels = 6, Color = "Svart", VehicleType = VehicleType.Van}
                 );
+
         }
     }
 }

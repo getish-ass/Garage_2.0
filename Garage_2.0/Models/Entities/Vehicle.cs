@@ -7,7 +7,7 @@ namespace Garage_2._0.Models
         public int Id { get; set; }
 
         [Display(Name = "Parkerad")]
-        public bool Parked { get; set; }
+        public bool Parked { get; set;}
 
         [Required]
         [StringLength(6)]

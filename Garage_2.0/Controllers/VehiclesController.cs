@@ -135,6 +135,9 @@ namespace Garage_2._0.Controllers
             return View(vehicle);
         }
 
+
+
+
         // GET: Vehicles/Create
         public IActionResult Create()
         {
@@ -203,6 +206,8 @@ namespace Garage_2._0.Controllers
             return View(vehicle);
         }
 
+
+
         // POST: Vehicles/Edit/5
         // To protect from overposting attacks, enable the specific properties you want to bind to.
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
@@ -242,6 +247,9 @@ namespace Garage_2._0.Controllers
             return View(vehicle);
         }
 
+
+
+
         // GET: Vehicles/Delete/5
         public async Task<IActionResult> Delete(int? id)
         {
@@ -262,6 +270,9 @@ namespace Garage_2._0.Controllers
             return View(vehicle);
         }
 
+
+
+
         // POST: Vehicles/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -279,9 +290,56 @@ namespace Garage_2._0.Controllers
             return _context.Vehicle.Any(v => v.RegNo == regNo);
         }
 
+
+        // GET: Vehicles/CheckOut/5
+        public async Task<IActionResult> CheckOut(int? id, ReceiptViewModel receipt)
+        {
+            var vehicle = await _context.Vehicle.FirstOrDefaultAsync(m => m.Id == id);
+
+            if (id == null)
+            {
+                return NotFound();
+            }
+
+            var viewModel = new ReceiptViewModel
+            {
+                Id = vehicle.Id,
+                ArrivalTime = vehicle.ArrivalTime,
+                RegNo = vehicle.RegNo,
+                CheckOutTime = DateTime.Now,
+                ParkedTime = (int)(DateTime.Now - vehicle.ArrivalTime).TotalMinutes
+            };
+
+            if (vehicle == null)
+            {
+                return NotFound();
+            }
+
+            return View(viewModel);
+        }
+
         private bool VehicleExists(int id)
         {
             return _context.Vehicle.Any(e => e.Id == id);
+        }
+
+        public async Task<IActionResult> Receipt(int? id, ReceiptViewModel receipt)
+        {
+            var vehicle = await _context.Vehicle
+                .FirstOrDefaultAsync(m => m.Id == id);
+
+
+            var viewModel = new ReceiptViewModel
+            {
+                Id = vehicle.Id,
+                ArrivalTime = vehicle.ArrivalTime,
+                RegNo = vehicle.RegNo,
+                CheckOutTime = DateTime.Now,
+                ParkedTime = ((int)(DateTime.Now - vehicle.ArrivalTime).TotalMinutes),
+                Cost = ((int)(DateTime.Now - vehicle.ArrivalTime).TotalMinutes / 60) * 20
+            };
+
+            return View(viewModel);
         }
     }
 }

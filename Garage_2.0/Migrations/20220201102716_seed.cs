@@ -33,11 +33,11 @@ namespace Garage_2._0.Migrations
                 columns: new[] { "Id", "ArrivalTime", "Brand", "Color", "Model", "NoOfWheels", "Parked", "RegNo", "vehicleType" },
                 values: new object[,]
                 {
-                    { 1, new DateTime(2022, 2, 1, 11, 27, 15, 974, DateTimeKind.Local).AddTicks(9837), "Volvo", "Black", "V60", 4, false, "FHX010", 1 },
-                    { 2, new DateTime(2022, 2, 1, 11, 27, 15, 974, DateTimeKind.Local).AddTicks(9878), "Toyota", "Blue", "Celica Supra", 4, false, "HHS407", 1 },
-                    { 3, new DateTime(2022, 2, 1, 11, 27, 15, 974, DateTimeKind.Local).AddTicks(9882), "Mercedes-Benz", "White", "Arocs", 6, false, "XRE565", 3 },
-                    { 4, new DateTime(2022, 2, 1, 11, 27, 15, 974, DateTimeKind.Local).AddTicks(9884), "Scania", "Black", "", 8, false, "MLB803", 4 },
-                    { 5, new DateTime(2022, 2, 1, 11, 27, 15, 974, DateTimeKind.Local).AddTicks(9887), "BMV", "Black", "", 6, false, "MXW413", 2 }
+                    { 1, new DateTime(2022, 2, 1, 11, 27, 15, 974, DateTimeKind.Local).AddTicks(9837), "Volvo", "Black", "V60", 4, true, "FHX010", 1 },
+                    { 2, new DateTime(2022, 2, 1, 11, 27, 15, 974, DateTimeKind.Local).AddTicks(9878), "Toyota", "Blue", "Celica Supra", 4, true, "HHS407", 1 },
+                    { 3, new DateTime(2022, 2, 1, 11, 27, 15, 974, DateTimeKind.Local).AddTicks(9882), "Mercedes-Benz", "White", "Arocs", 6, true, "XRE565", 3 },
+                    { 4, new DateTime(2022, 2, 1, 11, 27, 15, 974, DateTimeKind.Local).AddTicks(9884), "Scania", "Black", "", 8, true, "MLB803", 4 },
+                    { 5, new DateTime(2022, 2, 1, 11, 27, 15, 974, DateTimeKind.Local).AddTicks(9887), "BMV", "Black", "", 6, true, "MXW413", 2 }
                 });
         }
 

@@ -4,8 +4,9 @@
     ViewData["Title"] = "Delete";
 }
 
-<h1>Lämna garaget</h1>
+<h1>Radera</h1>
 
+<h3>Är du säker på att du vill radera detta?</h3>
 <div>
     <hr />
     <dl class="row">
@@ -61,7 +62,7 @@
     
     <form asp-action="Delete">
         <input type="hidden" asp-for="Id" />
-        <input type="submit" value="Checkout" class="btn btn-danger" /> |
-        <a asp-action="Index">Tillbaka till listan</a>
+        <input type="submit" value="Delete" class="btn btn-danger" /> |
+        <a asp-action="Index">Gå tillbaka till parkeringshuset</a>
     </form>
 </div>

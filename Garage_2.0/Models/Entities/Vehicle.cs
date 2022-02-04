@@ -17,9 +17,6 @@ namespace Garage_2._0.Models
         [Display(Name = "Ankomsttid")]
         public DateTime ArrivalTime { get; set; }
 
-        //[Display(Name = "Utcheckningstid")]
-        //public DateTime CheckOutTime { get; set; }
-
         [StringLength(25)]
         [Display(Name = "Märke")]
         public string? Brand { get; set; }

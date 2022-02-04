@@ -48,7 +48,10 @@ namespace Garage_2._0.Controllers
             return View(await _context.Vehicle.ToListAsync());
         }
 
-
+        public async Task<IActionResult> Index40()
+        {
+            return View(await _context.Vehicle.ToListAsync());
+        }
 
 
         public async Task<IActionResult> Search(string regNo, int vehicleType)
@@ -118,16 +121,35 @@ namespace Garage_2._0.Controllers
         {
             if (ModelState.IsValid)
             {
-                _context.Add(vehicle);
-                await _context.SaveChangesAsync();
+                 var myReg = _context.Vehicle.Where(a => a.RegNo == vehicle.RegNo).Single();
 
-                
-                return RedirectToAction(nameof(Index10));
+                if (myReg == null)
+                {
+                    _context.Add(vehicle);
+                    await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index10));
+
+                }
+                if(myReg != null)
+                {
+                    return RedirectToAction(nameof(Index40));
+
+                }
+               
 
 
             }
             return View(vehicle);
         }
+
+
+
+
+
+
+
+
 
         // GET: Vehicles/Edit/5
         public async Task<IActionResult> Edit(int? id)
@@ -178,7 +200,7 @@ namespace Garage_2._0.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                //return RedirectToAction(nameof(Index));
             }
             return View(vehicle);
         }

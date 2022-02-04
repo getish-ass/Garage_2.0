@@ -1,0 +1,25 @@
+﻿@model IEnumerable<Garage_2._0.Models.Vehicle>
+
+@{
+    ViewData["Title"] = "Index40";
+}
+
+<h1>Detaljer</h1>
+
+
+<form asp-action = "Search">
+  <div class="input-group mb-3">
+       <input type="text" class="form-control" name="regNo" placeholder="Sök på registeringsnummer ..." />
+    <div class="input-group-append">
+        <select name="vehicleType" class="form-control" asp-items="@Html.GetEnumSelectList<VehicleType>()">
+            <option selected="selected" value="">Välj fordonstyp</option>
+        </select>
+    </div>
+    <div class="input-group-append"> 
+      <button type="submit" class="btn btn-primary"><i class="fa fa-search">&emsp;Sök</i> </button>
+    </div>
+  </div> 
+</form>
+
+
+<partial name="MessagePartial4"/>

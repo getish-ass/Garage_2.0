@@ -10,18 +10,31 @@
 <div class="row">
     <div class="col-md-4">
         <form asp-action="Edit">
+
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <input type="hidden" asp-for="Id" />
+
             <div class="form-group form-check">
                 <label class="form-check-label">
                     <input class="form-check-input" asp-for="Parked" /> @Html.DisplayNameFor(model => model.Parked)
                 </label>
             </div>
+
+            <div class="form-group">
+                <label asp-for="VehicleType" class="control-label"></label>
+
+                <select name="vehicleType" class="form-control" asp-items="@Html.GetEnumSelectList<VehicleType>()">
+                    <option selected="selected" value="">Välj fordonstyp</option>
+                 </select>
+                 <span asp-validation-for="VehicleType" class="text-danger"></span>
+            </div>
+
             <div class="form-group">
                 <label asp-for="RegNo" class="control-label"></label>
                 <input asp-for="RegNo" class="form-control" />
                 <span asp-validation-for="RegNo" class="text-danger"></span>
             </div>
+
             <div class="form-group">
                 <label asp-for="ArrivalTime" class="control-label"></label>
                 <input asp-for="ArrivalTime" class="form-control" />

@@ -9,14 +9,16 @@
             <th>
                 @Html.DisplayNameFor(model => model.Parked)
             </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.VehicleType)
+            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.RegNo)
         
             <th>
                 @Html.DisplayNameFor(model => model.ArrivalTime)
-            </th>
-            <th>
-                @Html.DisplayNameFor(model => model.VehicleType)
             </th>
             <th>
                 @Html.DisplayNameFor(model => model.Brand)
@@ -39,15 +41,18 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Parked)
             </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.VehicleType)
+            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.RegNo)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.ArrivalTime)
             </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.VehicleType)
-            </td>
+          
             <td>
                 @Html.DisplayFor(modelItem => item.Brand)
             </td>
@@ -69,3 +74,5 @@
 }
     </tbody>
 </table>
+
+

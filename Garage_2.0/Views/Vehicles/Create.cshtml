@@ -20,15 +20,7 @@
                 </label>
             </div>
 
-            <div class="form-group">
-                <label asp-for="vehicleType" class="control-label"></label>
-
-                 <select name="vehicleType" class="form-control" asp-items="@Html.GetEnumSelectList<VehicleType>()">
-                    <option selected="selected" value="vehicleType">Välj fordonstyp</option>
-                 </select>
-
-                <span asp-validation-for="vehicleType" class="text-danger"></span>
-            </div>
+            
 
             <div class="form-group">
                 <label asp-for="RegNo" class="control-label"></label>

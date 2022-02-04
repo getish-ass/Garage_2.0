@@ -124,7 +124,7 @@ namespace Garage_2._0.Controllers
 
             model = vehicleType == 0 ?
                     model :
-                    model.Where(m => (int)m.vehicleType == vehicleType);
+                    model.Where(m => (int)m.VehicleType == vehicleType);
 
             return View(nameof(Index0), await model.ToListAsync());
         }
@@ -170,7 +170,8 @@ namespace Garage_2._0.Controllers
         {
             if (ModelState.IsValid)
             {
-                 var myReg = _context.Vehicle.Where(a => a.RegNo == vehicle.RegNo).Single();
+                // var myReg = _context.Vehicle.Where(a => a.RegNo == vehicle.RegNo);
+                var myReg = _context.Vehicle.Where(a => a.RegNo == vehicle.RegNo).FirstOrDefault();
 
                 if (myReg == null)
                 {

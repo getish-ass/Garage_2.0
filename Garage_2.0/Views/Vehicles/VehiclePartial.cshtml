@@ -11,9 +11,15 @@
             <th>
                 @Html.DisplayNameFor(model => model.Parked)
             </th>
+
+            <th>
+                @Html.DisplayNameFor(model => model.vehicleType)
+            </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.RegNo)
             </th>
+
             <th>
                 @Html.DisplayNameFor(model => model.ArrivalTime)
             </th>
@@ -38,6 +44,11 @@
             <td>
                 @Html.DisplayFor(modelItem => item.Parked)
             </td>
+
+            <td>
+                @Html.DisplayFor(modelItem => item.vehicleType)
+            </td>
+
             <td>
                 @Html.DisplayFor(modelItem => item.RegNo)
             </td>
@@ -65,3 +76,5 @@
 }
     </tbody>
 </table>
+
+

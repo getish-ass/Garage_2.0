@@ -31,6 +31,26 @@ namespace Garage_2._0.Controllers
             return View(await _context.Vehicle.ToListAsync());
         }
 
+
+
+        public async Task<IActionResult> Index10()
+        {
+            return View(await _context.Vehicle.ToListAsync());
+        }
+
+        public async Task<IActionResult> Index20()
+        {
+            return View(await _context.Vehicle.ToListAsync());
+        }
+
+        public async Task<IActionResult> Index30()
+        {
+            return View(await _context.Vehicle.ToListAsync());
+        }
+
+
+
+
         public async Task<IActionResult> Search(string regNo, int vehicleType)
         {
             var model = string.IsNullOrWhiteSpace(regNo) ?
@@ -94,13 +114,17 @@ namespace Garage_2._0.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Parked,RegNo,ArrivalTime,Brand,Model,NoOfWheels,Color")] Vehicle vehicle)
+        public async Task<IActionResult> Create([Bind("Id,Parked,vehicleType,RegNo,ArrivalTime,Brand,Model,NoOfWheels,Color")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
                 _context.Add(vehicle);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+
+                
+                return RedirectToAction(nameof(Index10));
+
+
             }
             return View(vehicle);
         }
@@ -126,7 +150,7 @@ namespace Garage_2._0.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Parked,RegNo,ArrivalTime,Brand,Model,NoOfWheels,Color")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Parked,vehicleType,RegNo,ArrivalTime,Brand,Model,NoOfWheels,Color")] Vehicle vehicle)
         {
             if (id != vehicle.Id)
             {
@@ -139,6 +163,9 @@ namespace Garage_2._0.Controllers
                 {
                     _context.Update(vehicle);
                     await _context.SaveChangesAsync();
+
+                    return RedirectToAction(nameof(Index20));
+
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -171,6 +198,8 @@ namespace Garage_2._0.Controllers
                 return NotFound();
             }
 
+           
+
             return View(vehicle);
         }
 
@@ -182,7 +211,7 @@ namespace Garage_2._0.Controllers
             var vehicle = await _context.Vehicle.FindAsync(id);
             _context.Vehicle.Remove(vehicle);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index30));
         }
 
         private bool VehicleExists(int id)

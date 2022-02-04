@@ -1,12 +1,11 @@
-﻿namespace Garage_2._0.Models
+﻿namespace Garage_2._0.Models.Entities
 {
     public enum VehicleType
     {
-        NotAvailable,
-        Car,
+        Bil,
         Van,
-        Lorry,
-        Bus,
-        MotorCycle
+        Lastbil,
+        Buss,
+        Motorcykel
     }
 }

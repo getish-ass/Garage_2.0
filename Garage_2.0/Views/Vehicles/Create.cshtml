@@ -4,9 +4,8 @@
     ViewData["Title"] = "Create";
 }
 
-<h1>Create</h1>
+<h1>Lägg till fordon</h1>
 
-<h4>Vehicle</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -17,7 +16,7 @@
 
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="Parked" /> @Html.DisplayNameFor(model => model.Parked)
+                    <input class="form-check-input" checked="true" asp-for="Parked" /> @Html.DisplayNameFor(model => model.Parked)
                 </label>
             </div>
 
@@ -44,6 +43,13 @@
             </div>
 
             <div class="form-group">
+                <div>
+                    <label asp-for="VehicleType" class="control-label"></label>
+                    <select class="form-control" asp-for="VehicleType" asp-items="@Html.GetEnumSelectList<VehicleType>()"></select>
+                </div>
+                <span asp-validation-for="VehicleType" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Brand" class="control-label"></label>
                 <input asp-for="Brand" class="form-control" />
                 <span asp-validation-for="Brand" class="text-danger"></span>
@@ -63,15 +69,17 @@
                 <input asp-for="Color" class="form-control" />
                 <span asp-validation-for="Color" class="text-danger"></span>
             </div>
+            <br />
             <div class="form-group">
-                <input type="submit" value="Create" class="btn btn-primary" />
+                <input type="submit" value="Lägg till" class="btn btn-primary" />
             </div>
         </form>
     </div>
 </div>
-
+<br />
 <div>
-    <a asp-action="Index">Back to List</a>
+    <br />
+    <a asp-action="Index">Tillbaka till listan</a>
 </div>
 
 @section Scripts {

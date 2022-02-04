@@ -1,13 +1,12 @@
 ﻿@model Garage_2._0.Models.Vehicle
 
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = "Detaljer";
 }
 
-<h1>Details</h1>
+<h1>Detaljer</h1>
 
 <div>
-    <h4>Vehicle</h4>
     <hr />
     <dl class="row">
         <dt class = "col-sm-2">
@@ -27,6 +26,12 @@
         </dt>
         <dd class = "col-sm-10">
             @Html.DisplayFor(model => model.ArrivalTime)
+        </dd>
+        <dt class = "col-sm-2">
+            @Html.DisplayNameFor(model => model.VehicleType)
+        </dt>
+        <dd class = "col-sm-10">
+            @Html.DisplayFor(model => model.VehicleType)
         </dd>
         <dt class = "col-sm-2">
             @Html.DisplayNameFor(model => model.Brand)
@@ -55,6 +60,6 @@
     </dl>
 </div>
 <div>
-    <a asp-action="Edit" asp-route-id="@Model?.Id">Edit</a> |
-    <a asp-action="Index">Back to List</a>
+    <a asp-action="Edit" asp-route-id="@Model?.Id">Ändra</a> |
+    <a asp-action="Index">Tillbaka till listan</a>
 </div>

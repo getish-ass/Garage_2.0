@@ -8,6 +8,8 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using Garage_2._0.Data;
 using Garage_2._0.Models;
+using Garage_2._0.Models.ViewModel;
+using Garage_2._0.Models.ViewModels;
 
 namespace Garage_2._0.Controllers
 {
@@ -20,10 +22,48 @@ namespace Garage_2._0.Controllers
             _context = context;
         }
 
+        // GET: Overview Vehicles ; Pekka asks: Is this used 2022-02-02 ?
+        public async Task<IActionResult> Overview()
+        {
+            //var time = DateTime.Now;
+            //var parkedTime = time - ArrivalTime;
+
+            var viewModel = _context.Vehicle.Select(e => new VehicleIndexViewModel
+            {
+                Id = e.Id,
+                Parked = e.Parked,
+                RegNo = e.RegNo,
+                ArrivalTime = e.ArrivalTime,
+                //ParkedTime = e.ArrivalTime - DateTime.Now,
+                VehicleType = e.VehicleType
+            });
+
+            return View(await viewModel.ToListAsync());
+        }
+
+
         // GET: Vehicles
         public async Task<IActionResult> Index()
         {
-            return View(await _context.Vehicle.ToListAsync());
+            var model = new DataModel
+            {
+                Vehicles = await _context.Vehicle.ToListAsync(),
+                VehicleTypes = await GetVehiclesTypeAsync()
+            };
+            return View(model);
+        }
+
+        private async Task<IEnumerable<SelectListItem>> GetVehiclesTypeAsync()
+        {
+            return await _context.Vehicle
+                                 .Select(m => m.VehicleType)
+                                 .Distinct()
+                                 .Select(g => new SelectListItem
+                                 {
+                                     Text = g.ToString(),
+                                     Value = g.ToString()
+                                 })
+                                 .ToListAsync();
         }
 
         public async Task<IActionResult> Index0()
@@ -54,17 +94,26 @@ namespace Garage_2._0.Controllers
         }
 
 
-        public async Task<IActionResult> Search(string regNo, int vehicleType)
+        public async Task<IActionResult> Search(DataModel dataModel)
         {
-            var model = string.IsNullOrWhiteSpace(regNo) ?
-                               _context.Vehicle :
-                               _context.Vehicle.Where(m => m.RegNo.StartsWith(regNo));
+            var model = string.IsNullOrWhiteSpace(dataModel.RegNo) ?
+                              _context.Vehicle :
+                              _context.Vehicle.Where(m => m.RegNo.StartsWith(dataModel.RegNo));
 
-            model = vehicleType == 0 ?
-                    model :
-                    model.Where(m => (int)m.vehicleType == vehicleType);
 
-            return View(nameof(Index), await model.ToListAsync());
+            model = dataModel.VehicleType == null ?
+                          model :
+                          model.Where(m => m.VehicleType == dataModel.VehicleType);
+
+            var searchResult = await model.ToListAsync();
+
+            var viewModel = new DataModel
+            {
+                Vehicles = searchResult
+            };
+
+            return View(nameof(Index), viewModel);
+
         }
 
         public async Task<IActionResult> Search0(string regNo, int vehicleType)
@@ -117,7 +166,7 @@ namespace Garage_2._0.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create([Bind("Id,Parked,vehicleType,RegNo,ArrivalTime,Brand,Model,NoOfWheels,Color")] Vehicle vehicle)
+        public async Task<IActionResult> Create([Bind("Id,Parked,VehicleType,RegNo,Brand,Model,NoOfWheels,Color")] Vehicle vehicle)
         {
             if (ModelState.IsValid)
             {
@@ -172,7 +221,7 @@ namespace Garage_2._0.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Parked,vehicleType,RegNo,ArrivalTime,Brand,Model,NoOfWheels,Color")] Vehicle vehicle)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Parked,VehicleType,RegNo,Brand,Model,NoOfWheels,Color")] Vehicle vehicle)
         {
             if (id != vehicle.Id)
             {
@@ -184,6 +233,7 @@ namespace Garage_2._0.Controllers
                 try
                 {
                     _context.Update(vehicle);
+                    _context.Entry(vehicle).Property(v => v.ArrivalTime).IsModified = false;
                     await _context.SaveChangesAsync();
 
                     return RedirectToAction(nameof(Index20));
@@ -234,6 +284,12 @@ namespace Garage_2._0.Controllers
             _context.Vehicle.Remove(vehicle);
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index30));
+        }
+
+        // Pekka: not used 2022-02-02
+        public bool RegNoExists(string regNo)
+        {
+            return _context.Vehicle.Any(v => v.RegNo == regNo);
         }
 
         private bool VehicleExists(int id)

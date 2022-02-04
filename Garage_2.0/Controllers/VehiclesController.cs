@@ -36,7 +36,8 @@ namespace Garage_2._0.Controllers
                 ArrivalTime = e.ArrivalTime,
                 //ParkedTime = e.ArrivalTime - DateTime.Now,
                 VehicleType = e.VehicleType
-            });
+            })
+            .Where(e => e.Parked == true);
 
             return View(await viewModel.ToListAsync());
         }
@@ -87,10 +88,7 @@ namespace Garage_2._0.Controllers
             return View(nameof(Index), viewModel);
 
         }
-
-
-      
-
+       
 
         // GET: Vehicles/Details/5
         public async Task<IActionResult> Details(int? id)

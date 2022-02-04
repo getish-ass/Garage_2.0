@@ -10,9 +10,9 @@
     <row>
         <div class="col-md-5">
             <div class="input-group mb-3">
-                <input type="text" class="form-control" name="regNo" placeholder="Sök på registeringsnummer ..." />
+                <input type="text" class="form-control" asp-for="RegNo" placeholder="Sök på registeringsnummer ..." />
                 <div class="input-group-append">
-                    <select name="vehicleType" class="form-control" asp-items="@Html.GetEnumSelectList<VehicleType>()">
+                    <select asp-for="VehicleType" class="form-control" asp-items="@Model.VehicleTypes">
                         <option selected="selected" value="">Välj fordonstyp</option>
                     </select>
                 </div>
@@ -23,5 +23,7 @@
         </div>
     </row>
 </form>
+
+
 
 <partial name="VehiclePartial" model ="Model.Vehicles"/>
